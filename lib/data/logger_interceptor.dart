@@ -40,6 +40,7 @@ class LoggerInterceptor extends Interceptor {
     if (err.response != null) {
       _printKeyValue("ERROR RESPONSE", err.response!.data);
     }
+    _printKeyValue("DIO EXCEPTION:", err.toString());
     debugPrint("*** END LOG ***");
     super.onError(err, handler);
   }
