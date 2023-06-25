@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mvvm_core_project/data/auth_interceptor.dart';
 import 'package:mvvm_core_project/data/curl_logger_interceptor.dart';
 import 'package:mvvm_core_project/data/logger_interceptor.dart';
@@ -39,7 +40,6 @@ class BaseApi {
         default:
       }
     } catch (e) {
-      // TODO: Hanlde Exception
       rethrow;
     }
   }
