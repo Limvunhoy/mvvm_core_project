@@ -32,7 +32,7 @@ class DioClient {
     try {
       switch (method) {
         case HttpMethod.get:
-          Response response = await dio.get("/users");
+          Response response = await dio.get(path, queryParameters: queryParams);
           return response;
         case HttpMethod.post:
           Response response = await dio.post(path, data: data);

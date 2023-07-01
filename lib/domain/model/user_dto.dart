@@ -1,11 +1,15 @@
-class UserDTO {
+import 'package:equatable/equatable.dart';
+
+class UserDTO extends Equatable {
   final String email;
-  final String username;
+  final String firstName;
+  final String lastName;
   final String avatar;
 
   UserDTO({
     required this.email,
-    required this.username,
+    required this.firstName,
+    required this.lastName,
     required this.avatar,
   });
 
@@ -14,8 +18,12 @@ class UserDTO {
     return '''
 {
   "email": $email,
-  "username": $username,
+  "first_name": $firstName,
+  "last_name": $lastName,
   "avatar": $avatar,
 }''';
   }
+
+  @override
+  List<Object?> get props => [email, firstName, lastName, avatar];
 }
