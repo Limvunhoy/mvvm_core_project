@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mvvm_core_project/common/base_button.dart';
 import 'package:mvvm_core_project/common/base_text.dart';
 import 'package:mvvm_core_project/common/base_text_button.dart';
@@ -7,9 +8,11 @@ import 'package:mvvm_core_project/common/base_view.dart';
 import 'package:mvvm_core_project/common/base_widget.dart';
 import 'package:mvvm_core_project/constants/app_color.dart';
 import 'package:mvvm_core_project/constants/gap.dart';
+import 'package:mvvm_core_project/core/app_route.dart';
 import 'package:mvvm_core_project/core/locator.dart';
 import 'package:mvvm_core_project/presentation/view/login/sign_in_recaptcha.dart';
 import 'package:mvvm_core_project/presentation/viewmodel/login_viewmodel.dart';
+import 'package:mvvm_core_project/utilities/extension%20/text_theme_extension.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -19,13 +22,16 @@ class LoginView extends StatelessWidget {
     debugPrint("$this Rebuild");
     return BaseView(
       centerTitle: true,
-      title: const Text("MVVM Core Project"),
+      displayTitle: "Login",
+      automaticallyImplyLeading: false,
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: BaseTextButton(
             child: const BaseText("Help"),
-            onPressed: () {},
+            onPressed: () {
+              context.push(AppRoute.home);
+            },
           ),
         ),
       ],

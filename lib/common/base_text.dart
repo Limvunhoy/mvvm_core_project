@@ -42,7 +42,7 @@ class BaseText extends StatelessWidget {
       data,
       key: key,
       style: style ??
-          Theme.of(context).textTheme.titleSmall?.copyWith(
+          Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: color,
                 fontSize: fonside,
                 fontWeight: fontWeight,
