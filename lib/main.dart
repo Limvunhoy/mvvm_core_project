@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_core_project/common/platform_app.dart';
 import 'package:mvvm_core_project/constants/app_color.dart';
+import 'package:mvvm_core_project/core/locator.dart';
 import 'package:mvvm_core_project/presentation/view/login/login_view.dart';
 
 void main() {
+  setupDependencies();
   runApp(const MyApp());
 }
 

@@ -7,9 +7,6 @@ class UserService extends BaseService {
   UserService({required DioClient api}) : super(api: api);
 
   Future<UserResponse> fetchUsers() async {
-    // await execute<UserResponse>(EndPoint.users, model: UserResponse(), onSuccess: (res) {
-    //   return onSuccess(res);
-    // });
     try {
       var res = await execute(EndPoint.users, model: UserResponse());
       return res;

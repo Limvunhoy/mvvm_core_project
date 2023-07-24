@@ -13,8 +13,8 @@ class UserViewModel extends ChangeNotifier {
     var res = await _userRepository.getUers();
     res.fold((failure) {
       debugPrint("Failed to get users: ${failure.message}");
-    }, (users) {
-      users = users;
+    }, (responseUsers) {
+      users = responseUsers;
       notifyListeners();
     });
   }

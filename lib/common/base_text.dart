@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_core_project/constants/app_color.dart';
+import 'package:mvvm_core_project/constants/gap.dart';
 
 class BaseText extends StatelessWidget {
   final String data;
@@ -12,6 +14,9 @@ class BaseText extends StatelessWidget {
   final int? maxLines;
   final String? semanticsLabel;
   final TextWidthBasis? textWidthBasis;
+  final double fonside;
+  final FontWeight? fontWeight;
+  final Color color;
 
   const BaseText(
     this.data, {
@@ -26,6 +31,9 @@ class BaseText extends StatelessWidget {
     this.maxLines,
     this.semanticsLabel,
     this.textWidthBasis,
+    this.fonside = Sizes.p12,
+    this.fontWeight,
+    this.color = AppColor.white,
   }) : super(key: key);
 
   @override
@@ -33,7 +41,12 @@ class BaseText extends StatelessWidget {
     return Text(
       data,
       key: key,
-      style: style ?? Theme.of(context).textTheme.titleMedium,
+      style: style ??
+          Theme.of(context).textTheme.titleSmall?.copyWith(
+                color: color,
+                fontSize: fonside,
+                fontWeight: fontWeight,
+              ),
       textAlign: textAlign,
       textDirection: textDirection,
       locale: locale,
