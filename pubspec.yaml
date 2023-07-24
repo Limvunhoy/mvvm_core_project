@@ -38,6 +38,9 @@ dependencies:
   shared_preferences: ^2.0.17
   faker: ^2.0.0
   mockito: ^5.2.0
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  get_it: ^7.6.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +52,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  build_runner: ^2.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

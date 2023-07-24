@@ -9,7 +9,10 @@ class LoggerInterceptor extends Interceptor {
     debugPrint("*** REQUEST LOG ***");
     _printKeyValue("URL", options.uri);
     _printKeyValue("METHOD", options.method);
-    _printKeyValue("REQUEST HEADERS", _logJson(options.headers));
+    if (options.headers.isNotEmpty) {
+      _printKeyValue("REQUEST HEADERS", _logJson(options.headers));
+    }
+
     if (options.method != "GET") {
       _printKeyValue("REQUEST BODY", _logJson(options.data));
     }
