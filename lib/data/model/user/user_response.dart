@@ -1,5 +1,4 @@
 import 'package:mvvm_core_project/data/model/base_model.dart';
-import 'package:mvvm_core_project/data/model/decodable.dart';
 
 class UserResponse implements IBaseModel {
   late int page;
@@ -57,23 +56,4 @@ class UserDataResponse implements IBaseModel {
         "last_name": lastname,
         "avatar": avatar,
       };
-
-  // @override
-  // Map<String, dynamic> toJson() {
-  //   "id": id,
-  //       "email": email,
-  //       "first_name": firstName,
-  //       "last_name": lastName,
-  //       "avatar": avatar,
-  // }
-
-  // @override
-  // UserResponse decode(data) {
-  //   id = data["id"];
-  //   email = data["email"];
-  //   firstname = data["first_name"];
-  //   lastname = data["last_name"];
-  //   avatar = data["avatar"];
-  //   return this;
-  // }
 }

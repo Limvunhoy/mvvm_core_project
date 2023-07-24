@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_core_project/constants/app_color.dart';
 import 'package:mvvm_core_project/constants/gap.dart';
 
-class BaseTextField extends TextField {
+class BaseTextField extends TextFormField {
   BaseTextField({
     Key? key,
     InputDecoration decoration = const InputDecoration(),
@@ -23,6 +23,7 @@ class BaseTextField extends TextField {
     String? hintText,
     Color? fillColor = AppColor.tfBackground,
     Widget? suffixIcon,
+    String? Function(String?)? validator,
   }) : super(
           key: key,
           decoration: decoration.copyWith(
@@ -58,6 +59,7 @@ class BaseTextField extends TextField {
           enabled: enabled,
           onEditingComplete: onEditingComplete,
           onChanged: onChanged,
+          validator: validator,
           onTap: onTap,
         );
 }

@@ -40,6 +40,7 @@ dependencies:
   mockito: ^5.2.0
   dartz: ^0.10.1
   equatable: ^2.0.5
+  get_it: ^7.6.0
 
 dev_dependencies:
   flutter_test:
