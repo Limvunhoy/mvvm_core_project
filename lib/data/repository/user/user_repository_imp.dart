@@ -33,7 +33,7 @@ class UserRepositoryImp extends UserRepository {
     } on SocketException {
       return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return const Left(ServerFailuer("Something went wrong!"));
+      return const Left(ServerFailure("Something went wrong!"));
     }
   }
 }

@@ -12,14 +12,14 @@ void main() {
   runApp(const MyApp());
 }
 
-final GoRouter router = GoRouter(
-  routes: [
-    GoRoute(
-      path: "/",
-      builder: (context, state) => const LoginView(),
-    ),
-  ],
-);
+// final GoRouter router = GoRouter(
+//   routes: [
+//     GoRoute(
+//       path: "/",
+//       builder: (context, state) => const LoginView(),
+//     ),
+//   ],
+// );
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -46,8 +46,9 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: AppColor.background,
       ),
-      routeInformationParser: AppRoute.router.routeInformationParser,
-      routerDelegate: AppRoute.router.routerDelegate,
+      routerConfig: AppRoute.router,
+      // routeInformationParser: AppRoute.router.routeInformationParser,
+      // routerDelegate: AppRoute.router.routerDelegate,
       // home: const LoginView(),
     );
   }

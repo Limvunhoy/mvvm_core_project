@@ -12,7 +12,8 @@ class DioClient {
   DioClient() {
     dio = Dio(
       BaseOptions()
-        ..baseUrl = "https://reqres.in/api"
+        // ..baseUrl = "https://reqres.in/api"
+        ..baseUrl = "https://api.themoviedb.org/3"
         ..connectTimeout = const Duration(milliseconds: 5000)
         ..receiveTimeout = const Duration(milliseconds: 5000)
         ..sendTimeout = const Duration(milliseconds: 5000),
@@ -35,7 +36,7 @@ class DioClient {
           Response response = await dio.get(path, queryParameters: queryParams);
           return response;
         case HttpMethod.post:
-          Response response = await dio.post(path, data: data);
+          Response response = await dio.post(path, queryParameters: queryParams, data: data);
           return response;
         default:
           return null;
