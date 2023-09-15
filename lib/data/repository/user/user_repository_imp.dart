@@ -26,7 +26,7 @@ class UserRepositoryImp extends UserRepository {
   }
 
   @override
-  Future<Either<Failure, List<UserDTO>>> getUers() async {
+  Future<Either<Error, List<UserDTO>>> getUers() async {
     try {
       var res = await userService.fetchUsers();
       return Right(_mapUserDTO(res));

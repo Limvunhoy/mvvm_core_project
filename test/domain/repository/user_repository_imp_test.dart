@@ -72,7 +72,7 @@ void main() {
       var result = await userRepositoryImp.getUers();
 
       verify(userService.fetchUsers());
-      expect(result, isA<Right<Failure, List<UserDTO>>>().having((p0) => p0.value, "value", equals(expectedResult)));
+      expect(result, isA<Right<Error, List<UserDTO>>>().having((p0) => p0.value, "value", equals(expectedResult)));
     });
   });
 }

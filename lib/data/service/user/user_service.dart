@@ -7,11 +7,12 @@ class UserService extends BaseService {
   UserService({required DioClient api}) : super(api: api);
 
   Future<UserResponse> fetchUsers() async {
-    try {
-      var res = await execute(EndPoint.users, model: UserResponse());
-      return res;
-    } catch (e) {
-      rethrow;
-    }
+    // try {
+    //   var res = await execute(EndPoint.users, model: UserResponse());
+    //   return res;
+    // } catch (e) {
+    //   rethrow;
+    // }
+    return UserResponse();
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_core_project/data/model/auth/validate_login_body_request.dart';
 import 'package:mvvm_core_project/data/repository/auth/login_repository_imp.dart';
 import 'package:mvvm_core_project/domain/repository/auth/login_repository.dart';
+import 'package:mvvm_core_project/utilities/api_error.dart';
 import 'package:mvvm_core_project/utilities/debouncer.dart';
 import 'package:mvvm_core_project/utilities/network_result.dart';
 
@@ -93,14 +94,18 @@ class LoginViewModel extends ChangeNotifier {
 
   // sealed class sample
   onGenerateToken() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-
-    var result = await repository.generateToken();
-    var token = switch (result) {
-      Success<String, Exception>(value: final token) => print("Token from generateToken method: $token"),
-      FailureException<String, Exception>(exception: final exception) => print("Exception from generateToken method: $exception"),
-    };
+    // if (!formKey.currentState!.validate()) {
+    //   return;
+    // }
+    //
+    // var result = await repository.generateToken();
+    // var token = switch (result) {
+    //   Success(value: final value) => print("Token: $value"),
+    //   Failure(exception: final error) => print("Error from ApiError: $error"),
+    // };
+    // var token = switch (result) {
+    //   Success<String, ApiError>(value: final token) => print("Token from generateToken method: $token"),
+    //   Failure<String, ApiError>(exception: final exception) => print("Exception from generateToken method: $exception"),
+    // };
   }
 }
