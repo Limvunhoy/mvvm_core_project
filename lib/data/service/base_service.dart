@@ -15,6 +15,7 @@ class BaseService {
 
   BaseService({required DioClient api}) : _baseApi = api;
 
+  // Response within callback as parameters callback functions
   Future<void> execute<T extends IBaseModel>(
     String endpoint, {
     HttpMethod? method = HttpMethod.get,
@@ -44,30 +45,9 @@ class BaseService {
     } on DioException catch (e) {
       return onFailure(_handleError(e));
     }
-
-    // try {
-    //   var response = await _baseApi.request(
-    //     path: endpoint,
-    //     method: method,
-    //     data: data,
-    //     queryParams: queryParams,
-    //   );
-    //   if (response != null && response.statusCode == 200) {
-    //     var data = Decodable.shared.decode<T>(response: response, model: model);
-    //     return data;
-    //   } else {
-    //     throw DioException.badResponse(
-    //       statusCode: 4000,
-    //       requestOptions: RequestOptions(),
-    //       response:
-    //       Response(
-    //         requestOptions: RequestOptions(data: "HelloWorld"),
-    //       ),
-    //     );
-    //   }
-    // }
   }
 
+  // Response as sealed class
   Future<Result<T, APIError>> request<T extends IBaseModel>(
       String endpoint, {
         HttpMethod? method = HttpMethod.get,
@@ -82,10 +62,8 @@ class BaseService {
         data: data,
         queryParams: queryParams,
       );
-      // if (response == null) return;
       if (response.statusCode == 200) {
         var data = Decodable.shared.decode<T>(response: response, model: model);
-        // return data;
         return Success(data);
       } else {
         var apiError =
@@ -95,28 +73,6 @@ class BaseService {
     } on DioException catch (e) {
       return Failure(_handleError(e));
     }
-
-    // try {
-    //   var response = await _baseApi.request(
-    //     path: endpoint,
-    //     method: method,
-    //     data: data,
-    //     queryParams: queryParams,
-    //   );
-    //   if (response != null && response.statusCode == 200) {
-    //     var data = Decodable.shared.decode<T>(response: response, model: model);
-    //     return data;
-    //   } else {
-    //     throw DioException.badResponse(
-    //       statusCode: 4000,
-    //       requestOptions: RequestOptions(),
-    //       response:
-    //       Response(
-    //         requestOptions: RequestOptions(data: "HelloWorld"),
-    //       ),
-    //     );
-    //   }
-    // }
   }
 
   APIError _handleError(DioException dioException) {
@@ -124,29 +80,4 @@ class BaseService {
         statusCode: dioException.response?.statusCode,
         json: dioException.response?.data);
   }
-
-// Future<ApiResponse<T>> execute<T extends IBaseModel>(String endpoint, {
-//   HttpMethod? method = HttpMethod.get,
-//   dynamic data,
-//   Map<String, dynamic>? queryParams,
-//   required T model,
-// }) async {
-//   try {
-//     var response = await _baseApi.request(
-//       path: endpoint,
-//       method: method,
-//       data: data,
-//       queryParams: queryParams,
-//     );
-//     if (response.data == 200) {
-//       var decodedData = Decodable.shared.decode<T>(
-//           response: response.data, model: model);
-//       return ApiResponse.success(data: decodedData);
-//     } else {
-//       return ApiResponse.error(statusCode: response.data, errorMessage: response.errorMessage);
-//     }
-//   } catch (e) {
-//     debugPrint("Error occurred: $e, ${e}");
-//     rethrow;
-//   }
 }

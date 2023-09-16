@@ -22,7 +22,7 @@ void main() {
     "Login Service Test Cases",
     () {
       test(
-        "Generate Token",
+        "Generate Token with Response as Parameter Callback Functions",
         () async {
           await loginService.generateToken(
             onSuccess: (res) {
@@ -34,7 +34,7 @@ void main() {
           );
         },
       );
-      test("Request Generate Token", () async {
+      test("Generate Token with Response as Sealed Class in Dart3", () async {
         var res = await loginService.requestGenerateToken();
         switch (res) {
           case Success<CreateTokenResponse, APIError>(value: final res):

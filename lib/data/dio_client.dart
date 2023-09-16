@@ -33,21 +33,6 @@ class DioClient {
     Options? options,
     Map<String, dynamic>? queryParams,
   }) async {
-    // try {
-    //   switch (method) {
-    //     case HttpMethod.get:
-    //       Response response = await dio.get(path, queryParameters: queryParams);
-    //       // return response;
-    //       return ApiResponse.success(statusCode: response.statusCode, data: response.data);
-    //     case HttpMethod.post:
-    //       Response response = await dio.post(path, queryParameters: queryParams, data: data);
-    //       return ApiResponse.success(statusCode: response.statusCode, data: response.data);
-    //     default:
-    //       return ApiResponse.error(statusCode: 400, errorMessage: "Unsupported HTTP method");
-    //   }
-    // } catch (e) {
-    //   return ApiResponse.error(statusCode: 400, errorMessage: "Network request failed: $e");
-    // }
     try {
       switch (method) {
         case HttpMethod.get:
