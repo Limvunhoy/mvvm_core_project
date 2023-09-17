@@ -60,7 +60,7 @@ void main() {
       var result = await userRepositoryImp.getUers();
 
       verify(userService.fetchUsers());
-      expect(result, equals(const Left(ServerFailuer("Something went wrong!"))));
+      expect(result, equals(const Left(ServerFailure("Something went wrong!"))));
       // expect(
       //     result,
       //     isA<Left<Failure, List<UserDTO>>>()
@@ -72,7 +72,7 @@ void main() {
       var result = await userRepositoryImp.getUers();
 
       verify(userService.fetchUsers());
-      expect(result, isA<Right<Failure, List<UserDTO>>>().having((p0) => p0.value, "value", equals(expectedResult)));
+      expect(result, isA<Right<Error, List<UserDTO>>>().having((p0) => p0.value, "value", equals(expectedResult)));
     });
   });
 }

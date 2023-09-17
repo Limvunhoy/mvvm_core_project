@@ -69,10 +69,10 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
   }
 
   @override
-  _i5.Future<_i3.Either<_i9.Failure, List<_i10.UserDTO>>> getUers() =>
+  _i5.Future<_i3.Either<_i9.Error, List<_i10.UserDTO>>> getUers() =>
       (super.noSuchMethod(Invocation.method(#getUers, []),
               returnValue:
-                  Future<_i3.Either<_i9.Failure, List<_i10.UserDTO>>>.value(
-                      _FakeEither_1<_i9.Failure, List<_i10.UserDTO>>()))
-          as _i5.Future<_i3.Either<_i9.Failure, List<_i10.UserDTO>>>);
+                  Future<_i3.Either<_i9.Error, List<_i10.UserDTO>>>.value(
+                      _FakeEither_1<_i9.Error, List<_i10.UserDTO>>()))
+          as _i5.Future<_i3.Either<_i9.Error, List<_i10.UserDTO>>>);
 }

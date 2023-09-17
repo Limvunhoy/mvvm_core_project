@@ -26,14 +26,14 @@ class UserRepositoryImp extends UserRepository {
   }
 
   @override
-  Future<Either<Failure, List<UserDTO>>> getUers() async {
+  Future<Either<Error, List<UserDTO>>> getUers() async {
     try {
       var res = await userService.fetchUsers();
       return Right(_mapUserDTO(res));
     } on SocketException {
       return const Left(ConnectionFailure("Failed to connect to the network"));
     } catch (e) {
-      return const Left(ServerFailuer("Something went wrong!"));
+      return const Left(ServerFailure("Something went wrong!"));
     }
   }
 }
