@@ -14,40 +14,27 @@ import 'package:mvvm_core_project/utilities/network_result.dart';
 class LoginService extends BaseService {
   LoginService({required DioClient api}) : super(api: api);
 
-  Future<CreateTokenResponse> createToken() async {
-    // try {
-    //   var res = await execute(EndPoint.login,
-    //       queryParams: {
-    //         "api_key": "712077dc796ceef687c9063293854405",
-    //       },
-    //       model: CreateTokenResponse());
-    //
-    //   return res;
-    // } catch (e) {
-    //   debugPrint("Failed to create token: $e");
-    //   rethrow;
-    // }
-    return CreateTokenResponse();
+  final String apiKey = "712077dc796ceef687c9063293854405";
+
+  // MARK: - Request to API Generate Token
+  // Response as sealed class in Dart3
+  Future<Result<CreateTokenResponse, APIError>> requestGenerateToken() async {
+    final res = await request(EndPoint.login,
+        queryParams: {
+          "api_key": apiKey,
+        },
+        model: CreateTokenResponse());
+    return res;
   }
 
+  // MARK: - Request to API Generate Token
+  // Response as parameter callback functions
   Future<void> generateToken(
       {required Function(CreateTokenResponse) onSuccess,
       required Function(APIError)? onFailure}) async {
-    // var res = await execute(EndPoint.login,
-    //     queryParams: {
-    //       "api_key": "712077dc796ceef687c90632938544058",
-    //     },
-    //     model: CreateTokenResponse());
-    //
-    // if (res.data != null && res.isSuccess) {
-    //   return res.data!;
-    // } else {
-    //   return null;
-    // }
-
     await execute(EndPoint.login,
         queryParams: {
-          "api_key": "712077dc796ceef687c90632938544058",
+          "api_key": apiKey,
         },
         model: CreateTokenResponse(),
         onSuccess: (CreateTokenResponse tokenResponse, _) {
@@ -57,35 +44,5 @@ class LoginService extends BaseService {
         onFailure(error);
       }
     });
-  }
-
-  Future<Result<CreateTokenResponse, APIError>> requestGenerateToken() async {
-    final res = await request(EndPoint.login,
-        queryParams: {
-          "api_key": "712077dc796ceef687c90632938544058",
-        },
-        model: CreateTokenResponse());
-    return res;
-  }
-
-  Future<bool> validateLogin({
-    required ValidateLoginBodyRequest bodyRequest,
-  }) async {
-    // try {
-    //   var res = await execute(
-    //     EndPoint.validateLogin,
-    //     method: HttpMethod.post,
-    //     queryParams: {
-    //       "api_key": "712077dc796ceef687c9063293854405",
-    //     },
-    //     model: CreateTokenResponse(),
-    //     data: bodyRequest.toJson(),
-    //   );
-    //   return res.success;
-    // } catch (e) {
-    //   debugPrint("Failed to validate login: $e");
-    //   rethrow;
-    // }
-    return false;
   }
 }

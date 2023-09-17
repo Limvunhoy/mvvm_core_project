@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:mvvm_core_project/data/model/api_error.dart';
 import 'package:mvvm_core_project/data/model/auth/validate_login_body_request.dart';
 import 'package:mvvm_core_project/data/repository/auth/login_repository_imp.dart';
 import 'package:mvvm_core_project/domain/repository/auth/login_repository.dart';
@@ -18,6 +19,8 @@ class LoginViewModel extends ChangeNotifier {
 
   bool get enableSignInButton => (txtUsernameController.text.isNotEmpty &&
       txtPasswordController.text.isNotEmpty);
+
+  String accessToken = "";
 
   LoginViewModel(this.repository);
 
@@ -71,41 +74,56 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   onLogin() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-    var res = await repository.createToken();
-    res.fold(
-      (failure) => debugPrint("Error: $failure"),
-      (token) async {
-        log("Required Token: $token");
-        final bodyRequest = ValidateLoginBodyRequest(
-          // uesrname: "Life_AsDev",
-          // password: "TMDB@122536",
-          username: txtUsernameController.text,
-          password: txtPasswordController.text,
-          requestToken: token,
-        );
-        final res = await repository.validateLogin(bodyRequest: bodyRequest);
-        res.fold((l) => debugPrint("Invalid token"), (r) => log("Valid token"));
-      },
-    );
-  }
-
-  // sealed class sample
-  onGenerateToken() async {
     // if (!formKey.currentState!.validate()) {
     //   return;
     // }
-    //
-    // var result = await repository.generateToken();
-    // var token = switch (result) {
-    //   Success(value: final value) => print("Token: $value"),
-    //   Failure(exception: final error) => print("Error from ApiError: $error"),
-    // };
-    // var token = switch (result) {
-    //   Success<String, ApiError>(value: final token) => print("Token from generateToken method: $token"),
-    //   Failure<String, ApiError>(exception: final exception) => print("Exception from generateToken method: $exception"),
-    // };
+    // var res = await repository.createToken();
+    // res.fold(
+    //   (failure) => debugPrint("Error: $failure"),
+    //   (token) async {
+    //     log("Required Token: $token");
+    //     final bodyRequest = ValidateLoginBodyRequest(
+    //       // uesrname: "Life_AsDev",
+    //       // password: "TMDB@122536",
+    //       username: txtUsernameController.text,
+    //       password: txtPasswordController.text,
+    //       requestToken: token,
+    //     );
+    //     final res = await repository.validateLogin(bodyRequest: bodyRequest);
+    //     res.fold((l) => debugPrint("Invalid token"), (r) => log("Valid token"));
+    //   },
+    // );
+  }
+
+  generateToken() async {
+    await repository.generateToken(resultCallback: (result) {
+      switch (result) {
+        case Success<String, APIError>(value: final token):
+          accessToken = token;
+        case Failure<String, APIError>(error: final error):
+          // TODO: Handle API error here...
+      }
+    });
+  }
+
+  requestGenerateToken() async {
+    final result = await repository.requestGenerateToken();
+    switch (result) {
+      case Success<String, APIError>(value: final token):
+        accessToken = token;
+      case Failure<String, APIError>(error: final error):
+      // TODO: Handle API error here...
+    }
+  }
+
+  onGenerateToken() async {
+    final res = await repository.requestGenerateToken();
+    switch (res) {
+      case Success<String, APIError>(value: final responseToken):
+        accessToken = responseToken;
+      case Failure<String, APIError>(error: final error):
+        // TODO: Handle error here...
+    }
+    notifyListeners();
   }
 }
