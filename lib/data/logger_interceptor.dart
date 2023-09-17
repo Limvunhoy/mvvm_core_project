@@ -50,10 +50,14 @@ class LoggerInterceptor extends Interceptor {
 
   String _logJson(dynamic data) {
     try {
-      final jsonString = data is String ? data : data.toString();
-      return const JsonEncoder.withIndent('  ').convert(json.decode(jsonString));
+      if (data is Map<String, dynamic>) {
+        String jsonData = json.encode(data);
+        return const JsonEncoder.withIndent('  ').convert(json.decode(jsonData));
+      } else {
+        return data.toString();
+      }
     } catch (e) {
-      return "Unable to parse response body.";
+      return "Unable to parse response body. $e";
     }
   }
 

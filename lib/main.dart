@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mvvm_core_project/common/platform_app.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mvvm_core_project/constants/app_color.dart';
+import 'package:mvvm_core_project/core/app_route.dart';
 import 'package:mvvm_core_project/core/locator.dart';
+import 'package:mvvm_core_project/core/text_theme.dart';
 import 'package:mvvm_core_project/presentation/view/login/login_view.dart';
 
 void main() {
@@ -10,13 +12,22 @@ void main() {
   runApp(const MyApp());
 }
 
+// final GoRouter router = GoRouter(
+//   routes: [
+//     GoRoute(
+//       path: "/",
+//       builder: (context, state) => const LoginView(),
+//     ),
+//   ],
+// );
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData.dark().copyWith(
         primaryColor: AppColor.primary,
@@ -31,10 +42,14 @@ class MyApp extends StatelessWidget {
         buttonTheme: const ButtonThemeData(
           buttonColor: AppColor.primary,
         ),
+        textTheme: AppTextTheme.appTextTheme(),
         brightness: Brightness.dark,
         scaffoldBackgroundColor: AppColor.background,
       ),
-      home: const LoginView(),
+      routerConfig: AppRoute.router,
+      // routeInformationParser: AppRoute.router.routeInformationParser,
+      // routerDelegate: AppRoute.router.routerDelegate,
+      // home: const LoginView(),
     );
   }
 }

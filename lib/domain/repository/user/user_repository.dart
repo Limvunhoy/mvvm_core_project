@@ -4,5 +4,5 @@ import 'package:mvvm_core_project/utilities/failure.dart';
 
 abstract class UserRepository {
   // Future<void> getUsers({required Function(List<UserDTO> users) onSuccess});
-  Future<Either<Failure, List<UserDTO>>> getUers();
+  Future<Either<Error, List<UserDTO>>> getUers();
 }
